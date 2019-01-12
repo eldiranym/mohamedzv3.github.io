@@ -66,13 +66,9 @@ map.addControl(new mapboxgl.NavigationControl());
 
 
 map.on('load', function() {
-  var url = 'https://mohamedzv3.github.io/destroyedCities.json';
+  var url = 'https://gist.github.com/mohamedzv3/60e6cb4b4e98341b6af0692f45e49482';
   map.addSource('point', { type: 'geojson', data: url});
 });
-
-// The 'building' layer in the mapbox-streets vector source contains building-height
-// data from OpenStreetMap.
-map.on('load', add3DBuildings); 
 
 var layerList = document.getElementById('menu');
 var inputs = layerList.getElementsByTagName('input');
@@ -86,8 +82,6 @@ function switchLayer(layer) {
     else {
         document.getElementById('menu').style.color = 'black'
     }
-    map.removeLayer('3d-buildings')
-    add3DBuildings()
 }
 
 for (var i = 0; i < inputs.length; i++) {
