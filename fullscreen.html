@@ -65,10 +65,10 @@ map.addControl(new mapboxgl.FullscreenControl());
 map.addControl(new mapboxgl.NavigationControl());
 
 // var myLayer = mapboxgl.featureLayer()
-//   .loadURL('https://cors-anywhere.herokuapp.com/' + 'https://gist.github.com/mohamedzv3/60e6cb4b4e98341b6af0692f45e49482')
+//   .loadURL('' + 'https://gist.github.com/mohamedzv3/60e6cb4b4e98341b6af0692f45e49482')
 //   .addTo(map);
 map.on('load', function() {
-  var url = 'https://cors-anywhere.herokuapp.com/' + 'https://gist.github.com/mohamedzv3/60e6cb4b4e98341b6af0692f45e49482';
+  var url = 'http://cors.io/?' + 'https://gist.github.com/mohamedzv3/60e6cb4b4e98341b6af0692f45e49482';
   map.addSource('point', { type: 'geojson', data: url});
 });
 
