@@ -64,11 +64,13 @@ var map = new mapboxgl.Map({
 map.addControl(new mapboxgl.FullscreenControl());
 map.addControl(new mapboxgl.NavigationControl());
 
-
-map.on('load', function() {
-  var url = 'https://gist.github.com/mohamedzv3/60e6cb4b4e98341b6af0692f45e49482';
-  map.addSource('point', { type: 'geojson', data: url});
-});
+var myLayer = L.mapbox.featureLayer()
+  .loadURL('https://gist.github.com/mohamedzv3/60e6cb4b4e98341b6af0692f45e49482')
+  .addTo(map);
+// map.on('load', function() {
+//   var url = 'https://gist.github.com/mohamedzv3/60e6cb4b4e98341b6af0692f45e49482';
+//   map.addSource('point', { type: 'geojson', data: url});
+// });
 
 var layerList = document.getElementById('menu');
 var inputs = layerList.getElementsByTagName('input');
