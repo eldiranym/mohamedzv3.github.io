@@ -68,6 +68,12 @@ map.on('load', function() {
   map.addSource('point', { type: 'geojson', data: "destroyedCities.json"});
 });
 
+map.addLayer({
+    'id': 'point',
+    'source': 'point',
+    'type': 'circle',
+    'layout': {},
+});
 
 var layerList = document.getElementById('menu');
 var inputs = layerList.getElementsByTagName('input');
