@@ -34,7 +34,7 @@
 </div>
 
 <div id='menu' class='map-overlay top'>
-        <input id='streets' type='radio' name='rtoggle' value='streets'>
+        <input id='streets' type='radio' name='rtoggle' value='streets' checked='checked'>
         <label for='streets'>default</label>
         <input id='light' type='radio' name='rtoggle' value='light'>
         <label for='light'>light</label>
@@ -54,7 +54,7 @@ var bounds = [
 
 var map = new mapboxgl.Map({
     container: 'map', // container id
-    style: 'mapbox://styles/mapbox/light-v9', //stylesheet location
+    style: 'mapbox://styles/mapbox/streets-v9', //stylesheet location
     center: [34.99, 31.5], // starting position
     zoom: 7, // starting zoom
     maxBounds: bounds
@@ -63,27 +63,6 @@ var map = new mapboxgl.Map({
 
 map.addControl(new mapboxgl.FullscreenControl());
 map.addControl(new mapboxgl.NavigationControl());
-
-// var myLayer = mapboxgl.featureLayer()
-//   .loadURL('' + 'https://gist.github.com/mohamedzv3/60e6cb4b4e98341b6af0692f45e49482')
-//   .addTo(map);
-map.on('load', function() {
-
-  map.addSource('point', {
-        "type": "geojson",
-        "data": "destroyedCities.json"
-    });
-
-    map.addLayer({
-         'id': 'point',
-         'source': 'point',
-         'type': 'circle',
-         'layout': {},
-         'paint': {
-             'circle-color': '#f08',
-         }
-     });
-});
 
 var layerList = document.getElementById('menu');
 var inputs = layerList.getElementsByTagName('input');
@@ -97,7 +76,59 @@ function switchLayer(layer) {
     else {
         document.getElementById('menu').style.color = 'black'
     }
+   
 }
+
+map.on('style.load', function () {
+  // Triggered when `setStyle` is called.
+  addDataLayer();
+});
+
+function addDataLayer() {
+    map.addSource('point', {
+        "type": "geojson",
+        "data": "destroyedCities.json"
+    });
+    map.addLayer({
+         'id': 'point',
+         'source': 'point',
+         'type': 'circle',
+         'layout': {},
+         'paint': {
+             'circle-color': '#f08',
+         }
+     });
+}
+
+  map.on('click', 'point', function (e) {
+        var coordinates = e.features[0].geometry.coordinates.slice();
+        // var description = e.features[0].properties.description;
+        var name = e.features[0].properties.name
+        var fact = e.features[0].properties.facts
+        // var usurpedlands = fact[0]
+
+        // Ensure that if the map is zoomed out such that multiple
+        // copies of the feature are visible, the popup appears
+        // over the copy being pointed to.
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+        
+        new mapboxgl.Popup()
+            .setLngLat(coordinates)
+            .setHTML("<h3>" + name + "</h3>")
+            .addTo(map);
+    });
+
+    // Change the cursor to a pointer when the mouse is over the places layer.
+    map.on('mouseenter', 'point', function () {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+    // Change it back to a pointer when it leaves.
+    map.on('mouseleave', 'point', function () {
+        map.getCanvas().style.cursor = '';
+    });
 
 for (var i = 0; i < inputs.length; i++) {
     inputs[i].onclick = switchLayer;
