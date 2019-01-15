@@ -1,0 +1,10 @@
+{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"type":"Point","coordinates":[35.0225, 31.840278]},"properties":
+{"facts":{"LandTaken":"14,992 Dunums","Pop":"1,644","Occupation":"June 7, 1967"},"name":"Jalou"}},{"type":"Feature",
+"geometry":{"type":"Point","coordinates":[35.0325,31.853333]},"properties":{"facts":{"LandTaken":"11,401 Dunums","Pop":"1,350",
+"Occupation":"June 7, 1967"},"name":"Beit Nuba"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[34.991667,31.840556]},
+"properties":{"facts":{"LandTaken":"5,151 Dunums","Pop":"2,015","Occupation":"June 7, 1967"},"name":"Imwas"}},{
+"type":"Feature","geometry":{"type":"Point","coordinates":[34.950278,31.508611]},"properties":{"facts":{"LandTaken":"470 Dunums",
+"Pop":"1,468","Occupation":"June 7, 1967"},"name":"Beit Awwa"}},{"type":"Feature","geometry":{"type":"Point","coordinates":[35.180278,31.832778]},
+"properties":{"facts":{"LandTaken":"1,592 Dunums","Pop":"168","Occupation":"June 7, 1967"},"name":"Nabi Samwil"}},
+{"type":"Feature","geometry":{"type":"Point","coordinates":[34.393889,30.882222]},"properties":{"facts":{"LandTaken":"180 Dunums",
+"Pop":"No more than 4000","Occupation":"June 10, 1967"},"name":"Auja al-Hafir"}}]}

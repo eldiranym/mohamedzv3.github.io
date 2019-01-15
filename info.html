@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>NES 448: Final Project</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,400i|Roboto:500" rel="stylesheet">
+    <link rel="stylesheet" href="dist/css/style.css">
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+</head>
+<body class="is-boxed has-animations">
+    <div class="body-wrap boxed-container">
+        <header class="site-header">
+            <div class="container">
+                <div class="site-header-inner">
+                    <div class="brand header-brand">
+                        <h1 class="m-0">
+                            <a href="#">
+                                <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <linearGradient x1="100%" y1="0%" x2="0%" y2="100%" id="logo-gradient-b">
+                                            <stop stop-color="#39D8C8" offset="0%"/>
+                                            <stop stop-color="#BCE4F4" offset="47.211%"/>
+                                            <stop stop-color="#838DEA" offset="100%"/>
+                                        </linearGradient>
+                                        <path d="M32 16H16v16H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h28a2 2 0 0 1 2 2v14z" id="logo-gradient-a"/>
+                                        <linearGradient x1="23.065%" y1="25.446%" y2="100%" id="logo-gradient-c">
+                                            <stop stop-color="#1274ED" stop-opacity="0" offset="0%"/>
+                                            <stop stop-color="#1274ED" offset="100%"/>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </a>
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main>
+            <section class="hero text-center">
+                <div class="container-sm">
+                    <div class="hero-inner">
+                           
+                        
+                        <h3 class="hero-title h2-mobile mt-0 is-revealing">Map Features</h3>
+                        <p class="hero-paragraph is-revealing">Currently, the map supports zooming in and zooming out, either through multitouch features on the + and - buttons. The camera can also be rotated in 360 degrees, and the perspective can be changed so that the landscape can be viewed at an angle. On the top right are a few radio buttons that allow the user to change the style of the map itself. And on the bottom right is a legend to show the user when each town was destroyed. Clicking on a point results in a pop up that can be closed that will have the name, and possibly some information about the town itself. I plan to add search functionality so that the user can search through the names of the different towns. The website is also fully responsive so it should be able to work on any laptop or mobile phone with a decently modern browser (as in...after Internet Explorer 11).</p>
+
+                        <h3 class="hero-title h2-mobile mt-0 is-revealing">Caveats/Limitations of the Map</h3>
+                        <p class="hero-paragraph is-revealing">Getting data is an incredibly difficult task for towns that have already been destroyed. Because of this, I do not claim that all of the towns that were destroyed are represented on the map. There are many more that were destroyed. One of the best examples of this is with the towns in 1967. The United Nations listed 10 different villages that were completely destroyed, yet because of the lack of available information, only 6 are represented on the map.</p>
+                        <p class="hero-paragraph is-revealing">I also want to note that some (but not many) of the towns that were destroyed have since been resettled. Beit Awwa is one of the examples. It currently has a larger population than it did in 1967, but it was completely destroyed then, and repopulated by Palestinians after the fact.</p>
+                            
+
+                        <h3 class="hero-title h2-mobile mt-0 is-revealing">Challenges</h3>
+                        <p class="hero-paragraph is-revealing">A few technical challenges presented themselves in creating this map. The first technical challenge was to decide which mapping technology to use. The main option was Google Maps, but I opted against using that technology because Mapbox allowed for more extensibility, and therefore a better user experience, given some more effort. Setting up the map and some of the basic controls was a new topic for me and no small feat in and of itself, but afterward, the main question became how I wanted to represent the data. I wanted to put a large emphasis on the towns that were lost, as well as the devastation that came about from the Israeli forces, so I relied on a small number of statistics: population displaced, amount of land taken, and when the town was destroyed. </p>
+                        <p class="hero-paragraph is-revealing">Of course, the most difficult part of the process was finding the information for the different towns that were destroyed. Looking through the map, some of the villages/towns only have names, and that's because some of the data was simply missing and there was no good way to find it. With over 600 data points for 1948, and 6 for 1967, it simply was not possible to try and curate and dig deeper on the history of every town, especially since I am not based in Palestine and could not visit to try and interview those who would know the data. </p>
+                        <p class="hero-paragraph is-revealing">Much of the data from 1948 is currently from PalestineRemembered.org. It was an invaluable source that gave me access to more information than I could have hoped for, and I had to manually create my dataset out of their information to represent the destroyed towns. I am also currently waiting to receive data from Zochrot, so that I may attempt to make the data more accurate and add more destroyed towns. </p>
+                        <p class="hero-paragraph is-revealing">The 1967 data was itherwise relatively sparse. The United Nations seems to be the main source for destroyed towns and it only lists 10, of which four have nearly no data available. The information I did use was a combination of information from books and some information from Zochrot and Palestine Remembered helped verify it. </p>
+                        <p class="hero-paragraph is-revealing">Finally, I decided to portray each town as a dot and to use the hot red and orange color. These decisions were made very intentionally. I wanted the towns to be as minimalist as possible - there was no point in having an X to portray them. I wanted the focus to be on the location and the information. It was easier to click on a circle and notice a location through a circle than with an X or a marker icon. As for the colors, I chose them because they easily noticeable on all of the different map styles, and they were different enough that they could be differentiatied by most color-blind people. It also felt fitting that a red color would make up most of the map, and that an orange color would show the 1967 towns because these colors reflect the idea of warnings and alerts, so it causes a similar thought in the user's head.</p>
+
+                        <div class="control">
+                                <a class="button button-primary button-block button-shadow" href="./index.html">Back to the main page</a>
+                            </div>
+                    </div>
+                </div>
+            </section>
+
+            
+    </div>
+
+    <script src="dist/js/main.min.js"></script>
+    <style>
+    p {
+        font-size: 14px ;
+    }
+
+    </style>
+</body>
+</html>

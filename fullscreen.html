@@ -36,6 +36,10 @@
         width: 10px;
     }
 
+    p {
+        margin: 0em;
+    }
+
     </style>
 
 </head>
@@ -118,6 +122,11 @@ function addDataLayer() {
         "type": "geojson",
         "data": "destroyedCities.json"
     });
+    map.addSource('sixtyseven', {
+        "type": "geojson",
+        "data": "1967.json"
+    });
+
     map.addLayer({
          'id': 'point',
          'source': 'point',
@@ -127,14 +136,22 @@ function addDataLayer() {
              'circle-color': '#f08',
          }
      });
-}
 
-  map.on('click', 'point', function (e) {
+     map.addLayer({
+         'id': '67',
+         'source': 'sixtyseven',
+         'type': 'circle',
+         'layout': {},
+         'paint': {
+             'circle-color': 'orange',
+         }
+     });
+     
+}
+map.on('click', '67', function (e) {
         var coordinates = e.features[0].geometry.coordinates.slice();
-        // var description = e.features[0].properties.description;
         var name = e.features[0].properties.name
-        var fact = e.features[0].properties.facts
-        // var usurpedlands = fact[0]
+        var fact = JSON.parse(e.features[0].properties.facts)
 
         // Ensure that if the map is zoomed out such that multiple
         // copies of the feature are visible, the popup appears
@@ -145,7 +162,50 @@ function addDataLayer() {
         
         new mapboxgl.Popup()
             .setLngLat(coordinates)
-            .setHTML("<h3>" + name + "</h3>")
+            .setHTML("<h3>" + name + "</h3><p>Date Destroyed: " + fact.Occupation + "</p><p>Population Removed: " + fact.Pop + "</p><p>Land Seized: " + fact.LandTaken + "</p" )
+            .addTo(map);
+    });
+
+    // Change the cursor to a pointer when the mouse is over the places layer.
+    map.on('mouseenter', '67', function () {
+        map.getCanvas().style.cursor = 'pointer';
+    });
+
+    // Change it back to a pointer when it leaves.
+    map.on('mouseleave', '67', function () {
+        map.getCanvas().style.cursor = '';
+    });
+
+  map.on('click', 'point', function (e) {
+        var coordinates = e.features[0].geometry.coordinates.slice();
+        // var description = e.features[0].properties.description;
+        var name = e.features[0].properties.name
+        var fact = e.features[0].properties.facts
+        
+        var text = "<h3>" + name + "</h3>"
+        if (fact !== undefined) {
+            fact = JSON.parse(fact)
+            if (fact["Occupation date"] !== undefined) {
+                text += "<p>Date Destroyed: " + fact["Occupation date"] + "</p>"
+            }
+            if (fact["Population in 1948"] !== undefined) {
+                text += "<p>Population Removed: " + fact["Population in 1948"] + "</p>"
+            }
+            if (fact["Usurped Lands"] !== undefined) {
+                text += "<p>Land taken: " + fact["Usurped Lands"] + "</p>"
+            }
+        }
+
+        // Ensure that if the map is zoomed out such that multiple
+        // copies of the feature are visible, the popup appears
+        // over the copy being pointed to.
+        while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+            coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+        }
+        
+        new mapboxgl.Popup()
+            .setLngLat(coordinates)
+            .setHTML(text)
             .addTo(map);
     });
 
